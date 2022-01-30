@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://kit.fontawesome.com/29aa7c775b.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <header>
+        <h1>Your Library</h1>
+        <hr>
+    </header>
+
+        <div class="form-wrapper">
+            <form id="submit-form" action="./main.js">
+                <input type="text" name="title" id="title" placeholder="Title">
+                <input type="text" name="author" id="author" placeholder="Author">
+                <input type="number" name="page" id="page" placeholder="# of pages">
+                <div class="read-wrapper">
+                    <div class="read-text">Have you read this book?</div>
+                    <input type="checkbox" name="read" id="read">
+                </div>
+                <button id="add-btn" type="submit">Add Book</button>
+            </form>
+        </div>
+
+        <main>
+            <div class="add-book-btn">
+                <span><i class="fa fa-plus"></i></span>
+            </div>
+            <div class="wrapper">
+                <div class="library">
+            
+                </div>
+            </div>
+        </main>
+
+
+    <script src="./main.js"></script>
+</body>
+</html>
