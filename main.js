@@ -132,6 +132,8 @@ addBookBtn.addEventListener('click', (e) => {
 
 
 //Set LocalStorage on Load
-myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+if(typeof localStorage.getItem('myLibrary') === 'string') {
+    myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+}
 //Load page from LocalStorage
 render();
