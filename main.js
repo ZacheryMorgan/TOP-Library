@@ -3,13 +3,22 @@ const form = document.querySelector('#submit-form')
 const addBtn = document.querySelector('#add-btn')
 addBtn.addEventListener('click', addBookToLibrary);
 
-let myLibrary = [];
+let myLibrary = [
+    {
+        'title': 'Harry Potter',
+        'author': 'J K Rowling',
+        'page': '390',
+        'read': true
+    }
+];
 let newBook;
+
+
 
 class Book {
     constructor(title, author, page, read) {
-        this.title = form.title.value; 
-        this.author = form.author.value; 
+        this.title = form.title.value;
+        this.author = form.author.value;
         this.page = form.page.value;
         this.read = form.read.checked;
     }
@@ -25,6 +34,9 @@ function addBookToLibrary(event) {
     render();
     form.reset();
 
+    //Change LocalStorage to new Array when you add a book
+    localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+
 }
 
 function render() {
@@ -32,7 +44,7 @@ function render() {
     const library = document.querySelector('.library');
     books.forEach(book => library.removeChild(book));
 
-    for(let i = 0; i < myLibrary.length; i++) {
+    for (let i = 0; i < myLibrary.length; i++) {
         createBook(myLibrary[i])
     }
 
@@ -52,8 +64,8 @@ function createBook(item) {
     const read = document.createElement('div')
     const readToggle = document.createElement('button')
     const deleteBtn = document.createElement('button')
-    const readToggleDisplay = function() {
-        if(item.read == true) {
+    const readToggleDisplay = function () {
+        if (item.read == true) {
             read.textContent = 'Completed'
             book.style.border = '2px solid #339b338c'
         } else {
@@ -61,7 +73,7 @@ function createBook(item) {
             book.style.border = '2px solid #e4202096'
         }
     }
-    
+
     book.classList.add('book');
     book.setAttribute('id', myLibrary.indexOf(item))
 
@@ -77,7 +89,7 @@ function createBook(item) {
     page.classList.add('book-page')
     book.appendChild(page)
 
-    
+
     readToggleDisplay();
     read.classList.add('book-read')
     book.appendChild(read)
@@ -95,19 +107,31 @@ function createBook(item) {
     deleteBtn.addEventListener('click', (e) => {
         deleteBtn.parentElement.remove();
         myLibrary.splice(myLibrary.indexOf(item), 1)
+
+        //Remove spliced book from LocalStorage
+        localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+
         render();
     })
     book.appendChild(deleteBtn);
 
     library.appendChild(book);
 
+
+
 }
 
+//Displays submit form when button is clicked
 const addBookBtn = document.querySelector('.add-book-btn');
 addBookBtn.addEventListener('click', (e) => {
     const submitFormWrapper = document.querySelector('.form-wrapper');
     const submitForm = document.querySelector('#submit-form');
-    
     submitForm.style.display = 'flex';
     submitFormWrapper.style.display = 'flex';
 })
+
+
+//Set LocalStorage on Load
+myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+//Load page from LocalStorage
+render();
