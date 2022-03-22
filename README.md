@@ -1,5 +1,7 @@
-# TOP-Library
+# Library
 
 The Odin Project Library Course
 
-Live View -- https://zacheryshawne.github.io/TOP-Library/
+# Live View
+
+https://zacherymorgan.github.io/TOP-Library/
